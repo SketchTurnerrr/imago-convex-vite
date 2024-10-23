@@ -7,7 +7,8 @@ import { api } from "../convex/_generated/api";
 import { Authenticated, Unauthenticated, useQuery } from "convex/react";
 
 export default function App() {
-  const user = useQuery(api.users.viewer);
+  const user = useQuery(api.users.getCurrentUser);
+  console.log("user :", user);
   return (
     <Layout
       menu={
@@ -25,7 +26,7 @@ export default function App() {
         <Authenticated>
           <ChatHeader />
           {/* eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain */}
-          <Chat viewer={user?._id!} />
+          <Chat />
         </Authenticated>
         <Unauthenticated>
           <SignInFormsShowcase />
